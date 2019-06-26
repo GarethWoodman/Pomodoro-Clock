@@ -1,0 +1,91 @@
+#timer-buttons {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    padding: 10px;
+    justify-content: center;
+}
+
+#display {
+    font-family: Helvetica;
+    font-size: 80pt;
+    margin-bottom: 25px;
+    margin-top: 25px;
+    color: green;
+}
+
+break, study {
+    font-family: Helvetica;
+    color: rgb(46, 112, 235);
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 50px;
+    padding: 20px;
+    background-color: rgb(46, 112, 235);
+    border: 1px solid rgb(255, 255, 255);
+    color: rgb(255, 255, 255);
+    border-radius: 3px;
+    align-items: center;
+    justify-items: center;
+    margin-right: 2px;
+    margin-left: 2px;
+}
+
+.wrapper {
+    display:inline-block;
+}
+
+#breakWrapper {
+    margin-right: 50px;
+}
+
+.timeButtons {
+    display: inline-block;
+    justify-content: center;
+    align-items: left;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 18px;
+    padding: 3px;
+    background-color: rgb(46, 112, 235);
+    border: 1px solid rgb(255, 255, 255);
+    color: rgb(255, 255, 255);
+    border-radius: 3px;
+    justify-items: center;
+}
+
+html {
+    background-color: #ffffff;
+}
+
+h1 {
+    font-family: silom;
+    font-size: 36pt;
+    color: rgb(46, 112, 235);
+}
+
+p {
+    font-family: silom;
+    font-size: 10pt;
+    color: rgb(46, 112, 235);
+}
+
+#main {
+    text-align: center;
+}
+
+#content {
+    display: inline-block;
+}
+
+#clock-box {
+    display: inline-block;
+    width: 400px;
+    height: 340px;
+    border: 3px solid rgb(255, 255, 255);
+    background-color: #ffffff;
+    box-shadow: #00000057 0px 0px 3px 1px;
+}

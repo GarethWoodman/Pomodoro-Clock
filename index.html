@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<head>
+    <title>Pomodoro Clock</title>
+    <link rel="stylesheet" type="text/css" href="./pomodoro-clock.css">
+</head>
+<body>
+<div id="main">
+    <div id="content">
+        <h1>POMODORO CLOCK</h1>
+        <div id="clock-box">
+            <div class="wrapper" id="breakWrapper">
+                <p>Break Time</p>
+                <up class="timeButtons" id="upBreak">^</up>
+                <down class="timeButtons" id="downBreak">v</down>
+                <break>05:00</break>
+            </div>
+            <div class="wrapper">
+                <p>Study Time</p>
+                <up class="timeButtons" id="upStudy">^</up>
+                <down class="timeButtons" id="downStudy">v</down>
+            <study>25:00</study>
+            </div>
+            <p id="display">25:00</p>
+            <div id="timer-buttons">
+                <playButton class="buttons">Start</playButton>
+                <pauseButton class="buttons">Pause</pauseButton>
+                <resetButton class="buttons">Reset</resetButton>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="pomodoro.js"></script> 
+</body>
