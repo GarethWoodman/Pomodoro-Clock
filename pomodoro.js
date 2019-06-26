@@ -80,6 +80,7 @@ pauseButton.addEventListener("click", function() {
 resetButton.addEventListener("click", function() {
   timey.seconds = studyTime;
   displayTime.style.color = "green"
+  isBreak = true;
   setInterval(window.timer);
 });
 
