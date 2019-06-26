@@ -36,17 +36,11 @@ class Timer {
         this.minutes = parseInt(this.seconds / 60)
         this.displaySeconds = this.seconds
         this.displaySeconds -= (60 * this.minutes)
-    
-        //let hours = (minutes / 60)
-        //minutes -= (60 * hours)
-    
         this.display_time(this.displaySeconds, 1)
         this.display_time(this.minutes, 0)
-        //this.display_time(hours, 0)
         return this.clock.join(":")
     }
-    
-    
+     
     display_time(time_value, index_value) {
         if (time_value < 10){
             this.clock[index_value] = "0" + time_value
@@ -56,7 +50,6 @@ class Timer {
             return
         }
     }
-        
 }
 
 let breakTimeObj = new Timer();
@@ -67,7 +60,6 @@ startButton.addEventListener("click", function() {
   window.timer = setInterval(function() { 
     displayTime.textContent = timey.time() 
     if(timey.seconds == 0){
-        //clearInterval(window.timer);
         if(isBreak){
           timey.seconds = breakTime;
           displayTime.style.color = "red"
@@ -92,33 +84,37 @@ resetButton.addEventListener("click", function() {
 });
 
 upBreak.addEventListener("click", function() {
-  if(breakTime < 60 * 60){
-    breakTime += 60;
-    breakTimeObj.seconds = breakTime;
-    displayBreakTime.textContent = breakTimeObj.time();
-  }
+  breakFunction(false);
 })
 
 downBreak.addEventListener("click", function() {
-  if(breakTime > 61){
-    breakTime -= 60;
-    breakTimeObj.seconds = breakTime;
-    displayBreakTime.textContent = breakTimeObj.time();
-  }
+  breakFunction(true);
 })
 
 upStudy.addEventListener("click", function() {
-  if(studyTime < 60 * 60){
-    studyTime += 60;
-    studyTimeObj.seconds = studyTime;
-    displayStudyTime.textContent = studyTimeObj.time();
-  }
+  studyFunction(false);
 })
 
 downStudy.addEventListener("click", function() {
-  if(studyTime > 61){
-    studyTime -= 60;
-    studyTimeObj.seconds = studyTime;
-    displayStudyTime.textContent = studyTimeObj.time();
-  }
+  studyFunction(true);
 })
+
+function studyFunction(isDown) {
+  if(isDown){
+    if(studyTime > 61){studyTime -= 60}
+  } else {
+      if(studyTime < 60 * 60){studyTime += 60;}
+  }
+  studyTimeObj.seconds = studyTime;
+  displayStudyTime.textContent = studyTimeObj.time();
+}
+
+function breakFunction(isDown) {
+  if(isDown){
+    if(breakTime > 61){breakTime -= 60}
+  } else {
+      if(breakTime < 60 * 60){breakTime += 60;}
+  }
+  breakTimeObj.seconds = breakTime;
+  displayBreakTime.textContent = breakTimeObj.time();
+}
