@@ -14,8 +14,6 @@ let upStudy = document.querySelector('#upStudy');
 let downStudy= document.querySelector('#downStudy');
 
 let isBreak = true;
-let breakTime = (60 * 5) + 1;
-let studyTime = (60 * 25) + 1;
 
 class Timer {
     constructor() {
@@ -32,7 +30,6 @@ class Timer {
     }
 
     time() {
-        this.count_down()
         this.minutes = parseInt(this.seconds / 60)
         this.displaySeconds = this.seconds
         this.displaySeconds -= (60 * this.minutes)
@@ -52,20 +49,26 @@ class Timer {
     }
 }
 
-let breakTimeObj = new Timer();
-let studyTimeObj = new Timer();
-let timey = new Timer();
+let breakTime = new Timer()
+breakTime.seconds = 60 * 5
+let studyTime = new Timer()
+studyTime.seconds = 60 * 25
+let mainTime = new Timer();
+
+let timeObjects = [breakTime, studyTime]
+let displayTimes = [displayBreakTime, displayStudyTime]
 
 startButton.addEventListener("click", function() {
-  window.timer = setInterval(function() { 
-    displayTime.textContent = timey.time() 
-    if(timey.seconds == 0){
+  window.timer = setInterval(function() {
+    mainTime.count_down(); 
+    displayTime.textContent = mainTime.time() 
+    if(mainTime.seconds == 0){
         if(isBreak){
-          timey.seconds = breakTime;
+          mainTime.seconds = breakTime.seconds;
           displayTime.style.color = "red"
           isBreak = false;
         } else {
-          timey.seconds = studyTime;
+          mainTime.seconds = studyTime.seconds;
           displayTime.style.color = "green"
           isBreak = true;
         }
@@ -78,44 +81,33 @@ pauseButton.addEventListener("click", function() {
 });
 
 resetButton.addEventListener("click", function() {
-  timey.seconds = studyTime;
+  mainTime.seconds = studyTime.seconds + 1;
   displayTime.style.color = "green"
   isBreak = true;
   setInterval(window.timer);
 });
 
 upBreak.addEventListener("click", function() {
-  breakFunction(false);
+  studyBreakControl("up", 0);
 })
 
 downBreak.addEventListener("click", function() {
-  breakFunction(true);
+  studyBreakControl("down", 0);
 })
 
 upStudy.addEventListener("click", function() {
-  studyFunction(false);
+  studyBreakControl("up", 1);
 })
 
 downStudy.addEventListener("click", function() {
-  studyFunction(true);
+  studyBreakControl("down", 1);
 })
 
-function studyFunction(isDown) {
-  if(isDown){
-    if(studyTime > 61){studyTime -= 60}
+function studyBreakControl(value, i) {
+  if(value == "down"){
+    if(timeObjects[i].seconds > 61){timeObjects[i].seconds -= 60}
   } else {
-      if(studyTime < 60 * 60){studyTime += 60;}
+      if(timeObjects[i].seconds < 60 * 60){timeObjects[i].seconds += 60;}
   }
-  studyTimeObj.seconds = studyTime;
-  displayStudyTime.textContent = studyTimeObj.time();
-}
-
-function breakFunction(isDown) {
-  if(isDown){
-    if(breakTime > 61){breakTime -= 60}
-  } else {
-      if(breakTime < 60 * 60){breakTime += 60;}
-  }
-  breakTimeObj.seconds = breakTime;
-  displayBreakTime.textContent = breakTimeObj.time();
+  displayTimes[i].textContent = timeObjects[i].time();
 }
